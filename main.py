@@ -202,5 +202,4 @@ while check:
             print("User wins")
 
 
-# random conditionals problem as indexes change
-# user getting stuck in loop when any bag hav e0 objects
+
