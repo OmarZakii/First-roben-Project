@@ -1,18 +1,5 @@
 import random
 
-# three variables for three bags
-
-bag_x = 10
-bag_y = 10
-bag_z = 10
-print(bag_x, bag_y, bag_z)
-
-# variables for the computer list
-
-var_x = 1
-var_y = 1
-var_z = 1
-
 
 # boolean for checking the game status
 
@@ -22,184 +9,97 @@ count = 1
 
 # list for object names
 
-bag_list = ['x', 'y', 'z']
+bag_list = [10, 10, 10]
 
 # game sequence
+def game_user(index):
+    User_check=True
+    while User_check:
+        try:
+            human_var = int(input("please enter number from 0 to 5"))
+            if bag_list[index] >= 5:
+                if 0 < human_var <= 5:
+                    bag_list[index] = bag_list[index] - human_var
+                    User_check = False
+                else:
+                    print(
+                        "please re-enter  ")
+
+            else:
+                if 0 < human_var <= bag_list[index]:
+                    bag_list[index] = bag_list[index] - human_var
+                    User_check= False
+                else:
+                    print(
+                        "please re-enter  to wrong input values ")
+
+        except ValueError:
+            print("please enter a number ")
+    # return bag_list
+
 
 while check:
 
-    print(bag_x, bag_y, bag_z)
+    print(bag_list[0],bag_list[1],bag_list[2])
 
-    if count == 1:
-
-        bag_choice = input("please choose bag x or y or z")
-        if bag_choice == 'x' or 'y' or 'z':
-
-            while check:
-                try:
-                    human_var = int(input("please enter number between 0 and 5"))
-                    check = False
-                except ValueError:
-                    print("please enter an integer ")
-            check = True
-
-            if 0 < human_var <= 5:
-                if bag_choice == 'x':
-                    bag_x = bag_x - human_var
-                elif bag_choice == 'y':
-                    bag_y = bag_y - human_var
-                elif bag_choice == 'z':
-                    bag_z = bag_z - human_var
-                count = count + 1
-            else:
-                print("please re-enter your values an error has occurred due to wrong input values ")
-        else:
-            print("please re-enter your values an error has occurred due to wrong input values ")
-
-
-    elif count % 2 == 0:
-
-        if bag_x == 0 and var_x == 1:
-            bag_list.remove('x')
-            var_x = 0
-        elif bag_y == 0 and var_y == 1:
-            bag_list.remove('y')
-            var_y = 0
-        elif bag_z == 0 and var_z == 1:
-            bag_list.remove('z')
-            var_z = 0
-
-        bag_name = random.choice(bag_list)
-
-        if bag_name == 'x':
-
-            if bag_x > 5:
-                bag_x = bag_x-random.randint(1, 5)
-            elif 0 < bag_x < 5:
-                bag_x = bag_x - random.randint(1, bag_x)
-
-        elif bag_name == 'y':
-
-            if bag_y > 5:
-                bag_y = bag_y - random.randint(1, 5)
-            elif 0 < bag_y < 5:
-                bag_y = bag_y - random.randint(1, bag_y)
-
-        elif bag_name == 'z':
-
-            if bag_z > 5:
-                bag_z = bag_z - random.randint(1, 5)
-            elif 0 < bag_z < 5:
-                bag_z = bag_z - random.randint(1, bag_z)
-
-        if bag_x == 0 and bag_y == 0 and bag_z == 0:
+    if count % 2 == 0:
+        bag_Number = random.randint(0, 2)
+        while bag_list[bag_Number] == 0:
+            bag_Number = random.randint(0, 2)
+        if bag_list[bag_Number] > 5:
+            bag_list[bag_Number] = bag_list[bag_Number]-random.randint(1, 5)
+        elif 0 < bag_list[bag_Number] <= 5:
+            bag_list[bag_Number] = bag_list[bag_Number]-random.randint(1, bag_list[bag_Number])
+        if bag_list[0] == 0 and bag_list[1]  == 0 and bag_list[2] == 0:
             check = False
             print("computer wins")
         count = count + 1
 
     elif count % 2 != 0:
+        bag_choice = int(input("please choose bag 1 or 2 or 3"))
+        if bag_choice == 1 or bag_choice == 2 or bag_choice == 3:
 
-        bag_choice = input("please choose bag x or y or z")
-        if bag_choice == 'x' or 'y' or 'z':
+            if bag_choice == 1:
 
-
-            if bag_choice == 'x':
-
-                if bag_x == 0:
+                if bag_list[bag_choice-1] == 0:
                     print("please choose a valid bag")
                     count = count - 1
                 else:
-                    while check:
-                        try:
-                            human_var = int(input("please enter number from 0 to 5"))
-                            if bag_x >= 5:
-                                if 0 < human_var <= 5:
-                                    bag_x = bag_x - human_var
-                                    check = False
-                                else:
-                                    print("please re-enter your values an error has occurred due to wrong input values ")
-
-                            else:
-                                if 0 < human_var <= bag_x:
-                                    bag_x = bag_x - human_var
-                                    check = False
-                                else:
-                                    print("please re-enter your values an error has occurred due to wrong input values ")
-
-                        except ValueError:
-                            print("please enter a number ")
+                    game_user(bag_choice-1)
 
                 check = True
+                count = count + 1
 
-
-
-
-
-            elif bag_choice == 'y':
-
-                if bag_y == 0:
+            elif bag_choice == 2:
+                if bag_list[bag_choice - 1] == 0:
                     print("please choose a valid bag")
                     count = count - 1
                 else:
-                    while check:
-                        try:
-                            human_var = int(input("please enter number from 0 to 5"))
-                            if bag_y >= 5:
-                                if 0 < human_var <= 5:
-                                    bag_y = bag_y - human_var
-                                    check = False
-                                else:
-                                    print(
-                                        "please re-enter your values an error has occurred due to wrong input values ")
-
-                            else:
-                                if 0 < human_var <= bag_y:
-                                    bag_y = bag_y - human_var
-                                    check = False
-                                else:
-                                    print(
-                                        "please re-enter your values an error has occurred due to wrong input values ")
-
-                        except ValueError:
-                            print("please enter a number ")
+                    game_user(bag_choice - 1)
 
                 check = True
-
-
-            elif bag_choice == 'z':
-
-                if bag_z == 0:
+                count = count + 1
+            elif bag_choice == 3:
+                if bag_list[bag_choice - 1] == 0:
                     print("please choose a valid bag")
-                    count = count-1
+                    count = count - 1
                 else:
-                    while check:
-                        try:
-                            human_var = int(input("please enter number from 0 to 5"))
-                            if bag_z >= 5:
-                                if 0 < human_var <= 5:
-                                    bag_z = bag_z - human_var
-                                    check = False
-                                else:
-                                    print("please re-enter your values an error has occurred due to wrong input values ")
-
-                            else:
-                                if 0 < human_var <= bag_z:
-                                    bag_z = bag_z - human_var
-                                    check = False
-                                else:
-                                    print("please re-enter your values an error has occurred due to wrong input values ")
-
-                        except ValueError:
-                            print("please enter a number ")
+                    game_user(bag_choice - 1)
 
                 check = True
+                count = count + 1
 
-            count = count + 1
         else:
             print("please re-enter your values an error has occurred due to wrong input values ")
-        if bag_x == 0 and bag_y == 0 and bag_z == 0:
+        if bag_list[0] == 0 and bag_list[1] == 0 and bag_list[2] == 0:
             check = False
             print("User wins")
+
+
+
+
+
+
 
 
 
