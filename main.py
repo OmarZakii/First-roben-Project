@@ -1,4 +1,6 @@
 import random
+import cv2
+
 
 
 # boolean for checking the game status
@@ -52,7 +54,11 @@ while check:
             bag_list[bag_Number] = bag_list[bag_Number]-random.randint(1, bag_list[bag_Number])
         if bag_list[0] == 0 and bag_list[1]  == 0 and bag_list[2] == 0:
             check = False
-            print("computer wins")
+            #print("computer wins")
+            com_win=cv2.imread('D:\Git bash word\First-roben-Project\You lose.jpg',1)
+            cv2.imshow('Img', com_win)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
         count = count + 1
 
     elif count % 2 != 0:
@@ -93,7 +99,11 @@ while check:
             print("please re-enter your values an error has occurred due to wrong input values ")
         if bag_list[0] == 0 and bag_list[1] == 0 and bag_list[2] == 0:
             check = False
-            print("User wins")
+            #print("User wins")
+            user_win = cv2.imread('D:\Git bash word\First-roben-Project\You win.jpg',0)
+            cv2.imshow('Img2',user_win)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
 
 
 
