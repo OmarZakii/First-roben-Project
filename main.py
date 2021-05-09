@@ -11,7 +11,7 @@ count = 1
 
 # list for object names
 
-bag_list = [10, 10, 10]
+bag_list = [9, 10, 10]
 
 # game sequence
 def game_user(index):
